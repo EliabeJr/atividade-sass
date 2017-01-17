@@ -1,0 +1,44 @@
+@import "../mixins";
+@import "../variables";
+
+#navbar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #252A34;
+	padding: 30px 0;
+	display: inline-block;
+	color: white;
+	border-bottom: 5px solid rgb(255, 46, 99);
+}
+
+#navbar li {
+	display: inline;
+}
+
+#links a {
+	color: rgb(255, 46, 99);
+	text-decoration: none;
+	padding: 0 20px;
+}
+
+#links {
+	margin-top: 10px;
+	font-family: sans-serif;
+	display: inline;
+
+	li:nth-child(1) > a:hover {
+		color: #006C9A;
+	}
+	li:nth-child(2) > a:hover {
+		color: #00BEBE;
+	}
+	li:nth-child(3) > a:hover {
+		color: #00F3E4;
+	}
+}
+
+#brand {
+	font-size: 2em;
+	display: inline;
+}

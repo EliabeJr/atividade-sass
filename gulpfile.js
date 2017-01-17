@@ -1,34 +1,42 @@
-const gulp 		= require("gulp");
-const sass 		= require("gulp-sass");
-const notify 	= require("gulp-notify");
+const gulp 		  = require("gulp");
+const sass 		  = require("gulp-sass");
+const notify 	  = require("gulp-notify");
+const htmlmin 	= require("gulp-htmlmin");
+const cssmin 	  = require('gulp-clean-css');
+const imageop   = require('gulp-image-optimization');
 
-/*
-
-  Task responsável por recuperar todos arquivos no formato .scss e .sass
-  e retornar para pasta css que será criada automaticamente.
-
-*/
-
-gulp.task("sass", function(){
-	return gulp.src(['./sass/*.sass','./scss/*.scss'])
-				.pipe(sass())
-				.on("error", notify.onError({title:"erro ao compilar", message:"<%= error.message %>"}))
-				.pipe(gulp.dest("./css"))
+gulp.task('compile', function () {
+	return gulp.src("./source/scss/**/*.scss")
+			.pipe(sass())
+			.on("error", notify.onError({title:"Erro ao compilar CSS", message:"<%= error.message %>"}))
+			.pipe(gulp.dest("./source/css"))
 });
 
-/*
-
-	Task responsável por executar de fundo todas a mudanças que houver nos arquivos
-
-*/
-
-gulp.task("sass:watch", function(){
-	gulp.watch("./sass/*.sass", ['sass']);
-	gulp.watch("./scss/*.scss", ['sass']);
+gulp.task('min-css', function(){
+  return gulp.src('./source/css/**/*.css')
+    		.pipe(cssmin({compatibility: 'ie8'}))
+   			.pipe(gulp.dest('./build/css'));
 });
 
-/*
-  Task default para iniciar apenas com o comando "gulp" no terminal
-*/
+gulp.task('min-html', function() {
+  return gulp.src('./source/*.html')
+    		.pipe(htmlmin({collapseWhitespace: true}))
+    		.pipe(gulp.dest('./build'));
+});
 
-gulp.task("default",['sass', 'sass:watch']);
+gulp.task('img', function(cb) {
+    gulp.src(['./source/img/**/*']).pipe(imageop({
+        optimizationLevel: 5,
+        progressive: true,
+        interlaced: true
+    })).pipe(gulp.dest('./build/img')).on('end', cb).on('error', cb);
+});
+
+gulp.task('watch', function() {
+    gulp.watch('./source/scss/**/*.scss', ['compile']);
+    gulp.watch('./source/css/**/*.css', ['min-css']);
+    gulp.watch('./source/*.html', ['min-html']);
+    gulp.watch('./source/img/**/*', ['img']);
+});
+
+gulp.task('default',['compile','watch']);
