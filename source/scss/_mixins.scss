@@ -1,0 +1,39 @@
+@mixin construct-body($body-bg) {
+	background-color: $body-bg;
+
+	@if (lightness($body-bg) < 30) {
+  		color: $text-white;
+	} @else {
+  		color: $text-dark;
+	}
+}
+
+@mixin construct-navbar($navbar-border-style, $navbar-bg, $navbar-position:absolute, $navbar-padding: 30px 0) {
+	border-bottom: $navbar-border-style;
+	background-color: $navbar-bg;
+	position: $navbar-position;
+	padding: $navbar-padding;
+	display: block;
+	width: 100%;
+
+	@if (lightness($navbar-bg) < 30) {
+  		color: $text-dark;
+  		background-color: $bg-white;
+	} @else {
+  		color: $text-white;
+  		background-color: $bg-dark;
+	}
+}
+
+@mixin construct-card($card-bg) {
+	background-color: $card-bg;
+
+	@if (lightness($card-bg) < 30) {
+  		color: $text-dark;
+  		background-color: $bg-white;
+	} @else {
+  		color: $text-white;
+  		background-color: $bg-dark;
+	}
+}
+

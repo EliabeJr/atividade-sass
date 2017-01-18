@@ -1,15 +1,6 @@
-@import "../mixins";
-@import "../variables";
-
 #navbar {
-	position: fixed;
 	top: 0;
-	width: 100%;
-	background: #252A34;
-	padding: 30px 0;
-	display: inline-block;
-	color: white;
-	border-bottom: 5px solid rgb(255, 46, 99);
+	@include construct-navbar(5px solid $color-theme, $theme-schema);
 }
 
 #navbar li {
@@ -17,7 +8,7 @@
 }
 
 #links a {
-	color: rgb(255, 46, 99);
+	color: $color-theme;
 	text-decoration: none;
 	padding: 0 20px;
 }

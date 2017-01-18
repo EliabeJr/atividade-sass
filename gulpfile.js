@@ -3,9 +3,9 @@ const sass          = require("gulp-sass");
 const notify        = require("gulp-notify");
 const htmlmin       = require("gulp-htmlmin");
 const cssmin        = require('gulp-clean-css');
-const imageop       = require('gulp-image-optimization');
+// const imageop       = require('gulp-image-optimization');
 
-gulp.task('compile', function () {
+gulp.task('sass', function () {
 	return gulp.src("./source/scss/**/*.scss")
 			.pipe(sass())
 			.on("error", notify.onError({title:"Erro ao compilar CSS", message:"<%= error.message %>"}))
@@ -24,6 +24,8 @@ gulp.task('min-html', function() {
     		.pipe(gulp.dest('./build'));
 });
 
+// Adicionado para uso futuro.
+
 gulp.task('img', function(cb) {
     gulp.src(['./source/img/**/*']).pipe(imageop({
         optimizationLevel: 5,
@@ -33,10 +35,10 @@ gulp.task('img', function(cb) {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./source/scss/**/*.scss', ['compile']);
     gulp.watch('./source/css/**/*.css', ['min-css']);
+    gulp.watch('./source/scss/**/*.scss', ['sass']);
     gulp.watch('./source/*.html', ['min-html']);
     gulp.watch('./source/img/**/*', ['img']);
 });
 
-gulp.task('default',['compile','watch']);
+gulp.task('default',['sass','min-css','watch']);
