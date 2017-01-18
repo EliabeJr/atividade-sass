@@ -1,9 +1,9 @@
-const gulp 		  = require("gulp");
-const sass 		  = require("gulp-sass");
-const notify 	  = require("gulp-notify");
-const htmlmin 	= require("gulp-htmlmin");
-const cssmin 	  = require('gulp-clean-css');
-const imageop   = require('gulp-image-optimization');
+const gulp          = require("gulp");
+const sass          = require("gulp-sass");
+const notify        = require("gulp-notify");
+const htmlmin       = require("gulp-htmlmin");
+const cssmin        = require('gulp-clean-css');
+const imageop       = require('gulp-image-optimization');
 
 gulp.task('compile', function () {
 	return gulp.src("./source/scss/**/*.scss")
