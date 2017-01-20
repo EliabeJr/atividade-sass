@@ -10,7 +10,9 @@
 #links a {
 	color: $color-theme;
 	text-decoration: none;
-	padding: 0 20px;
+	padding: 10px 20px;
+	transition:all .2s ease-in-out;
+	border: 2px solid transparent;
 }
 
 #links {
@@ -19,13 +21,19 @@
 	display: inline;
 
 	li:nth-child(1) > a:hover {
-		color: #006C9A;
+		color: $navbar-links-a-hover;
+		border: 2px solid $navbar-links-a-bg1;
+		background-color: $navbar-links-a-bg1;
 	}
 	li:nth-child(2) > a:hover {
-		color: #00BEBE;
+		color: $navbar-links-a-hover;
+		border: 2px solid $navbar-links-a-bg2;
+		background-color: $navbar-links-a-bg2;
 	}
 	li:nth-child(3) > a:hover {
-		color: #00F3E4;
+		color: $navbar-links-a-hover;
+		border: 2px solid $navbar-links-a-bg3;
+		background-color: $navbar-links-a-bg3;
 	}
 }
 

@@ -1,0 +1,10 @@
+#cards {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.card {
+	@extend %card;
+	@include construct-card($theme-schema);
+}
