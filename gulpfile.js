@@ -41,4 +41,4 @@ gulp.task('watch', function() {
     gulp.watch('./source/img/**/*', ['img']);
 });
 
-gulp.task('default',['sass','min-css','watch']);
+gulp.task('default',['sass','min-css','min-html','watch']);
